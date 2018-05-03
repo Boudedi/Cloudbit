@@ -60,7 +60,8 @@ function handleCloudbitEvent(event) {
         headers: { 'Content-Type': 'application/json', 'authorization': 'Bearer 00D1r000000rzxu!AR8AQE1u8zuyWwxYrGOGyffV94Kinqe._Ti6VIjdl1CB3bVZ.n_WpKf2DQz34E.0a.J5Bvz8koQioz2KFbzYIaB8REDhDXkn'},
       })
 	      .then(res => res.json())
-	      .then(json => console.log(json));
+        .then(json => console.log("json", json))
+        .catch(err => console.error("err", err));
       break
     case 'connectionChange':
       // One day, cloudBits will emit this event too, but not yet.
