@@ -1,6 +1,7 @@
 var koa = require('koa')
 var koaParseJson = require('koa-parse-json')
 var route = require('koa-route')
+var fetch = require('node-fetch');
 
 
 
@@ -53,10 +54,14 @@ function handleCloudbitEvent(event) {
       // Do whatever you want with the amplitde
       console.log(event.payload)
       console.log('cloudBit input received: %d%', event.payload.percent)
-      // fetch('http://httpbin.org/post', { method: 'POST', body: 'a=1' })
-	    //   .then(res => res.json())
-	    //   .then(json => console.log(json));
-      // break
+      fetch('https://manufacturingfr.my.salesforce.com/services/data/v41.0/sobjects/LittleBits_Event__e/', { 
+        method: 'POST',
+        body:    JSON.stringify({"id__c":"123","Power__c":event.payload.percent,"Device_ID__c":"Lego City"}),
+        headers: { 'Content-Type': 'application/json', 'authorization': 'Bearer 00D1r000000rzxu!AR8AQE1u8zuyWwxYrGOGyffV94Kinqe._Ti6VIjdl1CB3bVZ.n_WpKf2DQz34E.0a.J5Bvz8koQioz2KFbzYIaB8REDhDXkn'},
+      })
+	      .then(res => res.json())
+	      .then(json => console.log(json));
+      break
     case 'connectionChange':
       // One day, cloudBits will emit this event too, but not yet.
       break
