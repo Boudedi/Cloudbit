@@ -56,8 +56,8 @@ function handleCloudbitEvent(event) {
       console.log('cloudBit input received: %d%', event.payload.percent)
       fetch('https://manufacturingfr.my.salesforce.com/services/data/v41.0/sobjects/LittleBits_Event__e/', { 
         method: 'POST',
-        body:    JSON.stringify({"id__c":"123","Power__c":event.payload.percent,"Device_ID__c":"Lego City"}),
-        headers: { 'Content-Type': 'application/json', 'authorization': 'Bearer 00D1r000000rzxu!AR8AQE1u8zuyWwxYrGOGyffV94Kinqe._Ti6VIjdl1CB3bVZ.n_WpKf2DQz34E.0a.J5Bvz8koQioz2KFbzYIaB8REDhDXkn'},
+        body: JSON.stringify({"id__c":"123","Power__c":event.payload.percent,"Device_ID__c":"Lego City"}),
+        headers: {'Content-Type': 'application/json', 'authorization': 'Bearer 00D1r000000rzxu!AR8AQE1u8zuyWwxYrGOGyffV94Kinqe._Ti6VIjdl1CB3bVZ.n_WpKf2DQz34E.0a.J5Bvz8koQioz2KFbzYIaB8REDhDXkn'},
       })
 	      .then(res => res.json())
         .then(json => console.log("json", json))
